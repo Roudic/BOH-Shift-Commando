@@ -27,6 +27,41 @@ npm run build
 npm run preview
 ```
 
+## Live demo (GitHub Pages)
+
+After merging to `main` and enabling Pages, the app is at:
+
+**https://roudic.github.io/BOH-Shift-Commando/**
+
+### One-time GitHub setup
+
+1. Open the repo on GitHub → **Settings** → **Pages**
+2. Under **Build and deployment**, set **Source** to **GitHub Actions**
+3. Merge [PR #1](https://github.com/Roudic/BOH-Shift-Commando/pull/1) into `main` (or push `main` with this code)
+4. The deploy workflow runs automatically; refresh Pages after ~1–2 minutes
+
+On iPad/iPhone: open the URL in Safari → **Share** → **Add to Home Screen** for an app-like shortcut.
+
+## See it on your computer now
+
+```bash
+git clone https://github.com/Roudic/BOH-Shift-Commando.git
+cd BOH-Shift-Commando
+git checkout cursor/cfa-schedule-builder-e0d2
+npm install
+npm run dev
+```
+
+Open **http://localhost:5173** in your browser.
+
+### Same Wi‑Fi as your phone
+
+```bash
+npm run dev -- --host
+```
+
+Then on your phone (same network), open **http://YOUR-COMPUTER-IP:5173** (e.g. `http://192.168.1.50:5173`).
+
 ## Workflow
 
 1. Enter team availability in HotSchedules
