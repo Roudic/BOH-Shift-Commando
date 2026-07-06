@@ -31,14 +31,32 @@ function buildInitialState(): AppState {
 }
 
 function loadState(): AppState {
+  const defaults = buildInitialState();
   try {
     const raw = localStorage.getItem(STORAGE_KEY);
-    if (!raw) return buildInitialState();
-    const parsed = JSON.parse(raw) as AppState;
-    if (!parsed.version || !parsed.members) return buildInitialState();
-    return parsed;
+    if (!raw) return defaults;
+    const parsed = JSON.parse(raw) as Partial<AppState>;
+    if (!parsed.version || !Array.isArray(parsed.members) || parsed.members.length === 0) {
+      return defaults;
+    }
+    return {
+      ...defaults,
+      ...parsed,
+      settings: {
+        ...defaults.settings,
+        ...parsed.settings,
+        closerTargets: {
+          ...defaults.settings.closerTargets,
+          ...parsed.settings?.closerTargets,
+        },
+      },
+      members: parsed.members,
+      shiftBlocks: parsed.shiftBlocks ?? defaults.shiftBlocks,
+      assignments: parsed.assignments ?? defaults.assignments,
+      templates: parsed.templates ?? [],
+    };
   } catch {
-    return buildInitialState();
+    return defaults;
   }
 }
 
