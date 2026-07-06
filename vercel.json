@@ -1,0 +1,9 @@
+{
+  "buildCommand": "npm run build:vercel",
+  "outputDirectory": "dist",
+  "installCommand": "npm ci",
+  "framework": "vite",
+  "env": {
+    "VITE_BASE_PATH": "/"
+  }
+}
